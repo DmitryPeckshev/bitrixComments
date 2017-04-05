@@ -1,0 +1,155 @@
+.allcommlink{
+	max-width: 200px; 
+	display: inline-block;
+	margin-left: 8px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 16px;
+	padding: 8px 12px;
+	text-align: center;
+	color: #333;
+	border: 1px #828282 solid;
+	border-bottom: rgba(252,252,252,1);
+	background: rgba(252,252,252,1);
+	margin-bottom: -1px;
+	height: 36px;
+}
+.allcommlink:hover{
+	border: 1px #828282 solid;
+	border-bottom: rgba(252,252,252,1);
+}
+.unactive{
+	border-bottom: 1px #828282 solid;
+	background: rgba(233,233,233,1);
+}
+.unactive:hover{
+	border-bottom: 1px #828282 solid;
+	background: rgba(218,218,218,1);
+}
+.allcommlink:first-child{
+	margin-left: 14px;
+}
+.commcontainer{
+	border: 1px #828282 solid;
+	box-shadow: 0 0 12px #696969;
+	margin-bottom: 0;
+}
+.oneComment {
+	width: 100%;
+	padding: 14px 2%;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	border-top: 1px #696969 dashed;
+	background: rgba(248,248,248,0.6);	
+}
+.oneComment:first-child {
+	border-top: none;
+}
+.commname {
+	font-size: 16px;
+	font-weight: bold;
+}
+.commemail {
+	font-size: 14px;
+	margin-bottom: 2px;
+	font-weight: normal;
+}
+.commproduct {
+	font-size: 16px;
+	margin-bottom: 2px;
+	font-family: Tahoma;
+	text-shadow: -1px 1px 2px #ccc;
+}
+.commrate {
+	font-size: 14px;
+	width: 100%;
+	margin-bottom: 8px;
+}
+.commtext pre{
+	font-size: 14px;
+	padding: 0;
+    margin: 0;
+    line-height: normal;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin-bottom: 14px;
+}
+.commdate {
+	font-size: 12px;
+	text-align: right;
+	right: 0;
+	float:right;
+	font-weight: normal;
+}
+.starimg{
+	width: 16px;
+	height: 16px;
+	margin: 1px; 
+}
+input[name="commPub"] {
+	height: 32px;
+	color: #fff;
+	font-size: 16px;
+	text-shadow: 0 0 2px #0c5d09;
+	padding: 0 10px;
+	margin-right: 50px;
+	background: #0ca309;
+	border: 2px #00d600 solid;
+}
+input[name="commDel"] {
+	height: 32px;
+	color: #fff;
+	font-size: 16px;
+	text-shadow: 0 0 2px #6f0000;
+	padding: 0 10px;
+	background: #a10000;
+	border: 2px #cf0000 solid;
+}
+input[name="commPub"]:hover {
+	background: #00ce00;
+}
+input[name="commDel"]:hover {
+	background: #dd0000;
+}
+.showStatus {
+	font-size: 22px;
+	text-decoration: underline;
+	text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff, 0 0 8px #fff;
+}
+.pageNav {
+	border: 1px #828282 solid;
+	border-top: none;
+	background: rgba(242,242,242,1);
+	box-shadow: 0 2px 12px #696969;
+	width: 60%;
+	margin-left: 20%;
+	margin-bottom: 30px;
+	color: #000;
+	display: inline-block;
+}
+.pageNav .text {
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-size: 16px;
+	margin: 6px 0;
+}
+.pageNav a {
+	color: #006400;
+	padding: 3px;
+}
+.pageNav a:hover {
+	background: #B5B5B5;
+	padding: 3px;
+}
+.pageNav .text:last-child{
+	color: #CFCFCF;
+}
+.pageNav .text b {
+	color: #000;
+	background: #CFCFCF;
+	padding: 3px;
+}
