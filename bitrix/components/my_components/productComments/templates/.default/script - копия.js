@@ -14,27 +14,27 @@ function formValidate() {
 	var commAlert = document.getElementById("nocomm");
 	isValid = true;
 	if (!formElems.comm_name.value) {
-        nameAlert.innerHTML = 'Имя не указано!'; isValid = false;
+        nameAlert.innerHTML = 'Èìÿ íå óêàçàíî!'; isValid = false;
     }else{
 		nameAlert.innerHTML = ' ';
 	}
 	if (!formElems.comm_email.value) {
-		emailAlert.innerHTML = 'Email не указан!'; isValid = false;
+		emailAlert.innerHTML = 'Email íå óêàçàí!'; isValid = false;
     }else{
 		var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,6})$/;
 		if(!reg.test(formElems.comm_email.value)) {
-			emailAlert.innerHTML = 'Указан некорректный Email'; isValid = false;
+			emailAlert.innerHTML = 'Ââåäåí íåêîðåêòíûé Email'; isValid = false;
 		}else{
 			emailAlert.innerHTML = ' ';
 		}	
 	}
 	if (!formElems.comm_rate.value) {
-		rateAlert.innerHTML = 'Рейтинг не указан!'; isValid = false;
+		rateAlert.innerHTML = 'Âû íå óêàçàëè ðåéòèíã!'; isValid = false;
     }else{
 		rateAlert.innerHTML = ' ';
 	}
 	if (!formElems.comm_text.value) {
-		commAlert.innerHTML = 'Текст комментария не указан!'; isValid = false;
+		commAlert.innerHTML = 'Âû íå óêàçàëè òåêñò êîììåíòàðèÿ!'; isValid = false;
     }else{
 		commAlert.innerHTML = ' ';
 	}
@@ -85,7 +85,7 @@ function ajax(param) {
 		send=send+"ajax=true";
 	}
 	req.open(method, param.url, true);
-	if(param.statbox)document.getElementById(param.statbox).innerHTML = 'Идет отправка...';
+	if(param.statbox)document.getElementById(param.statbox).innerHTML = 'Êîììåíòàðèé îòïðàâëÿåòñÿ...';
 	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	req.send(send);
 	req.onreadystatechange = function() {

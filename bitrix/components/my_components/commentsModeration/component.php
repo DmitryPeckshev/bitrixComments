@@ -16,15 +16,17 @@ if (CModule::IncludeModule("blog")) {
 			"POST_ID" =>'1',
 			"PUBLISH_STATUS" => $statusFilter
 		);
-	$arSelectedFields = Array("ID", "AUTHOR_ID", "AUTHOR_NAME", "AUTHOR_EMAIL", "AUTHOR_IP1", "TITLE", "POST_TEXT", "DATE_CREATE", "PUBLISH_STATUS");
+	$arSelectedFields = Array("ID", "AUTHOR_ID", "AUTHOR_NAME", "AUTHOR_EMAIL", "AUTHOR_IP", "AUTHOR_IP1", "TITLE", "POST_TEXT", "DATE_CREATE", "PUBLISH_STATUS");
 	$productsId = array();
 	$dbComment = CBlogComment::GetList($arOrder, $arFilter, false, false, $arSelectedFields);
-		$allComments = array();
+	$dbComment -> NavStart(20);
+	$arResult["NAV_STRING"] = $dbComment->GetPageNavString("", '');
+	$allComments = array();
+	$arResult["COMMENTS"] = array();
 	while ($arComment = $dbComment->Fetch()) {	
-		array_push($allComments, $arComment);
+		array_push($arResult["COMMENTS"], $arComment);
 		array_push($productsId, $arComment["AUTHOR_IP1"]);
 	}
-	
 	if(CModule::IncludeModule("iblock")){ 
 		$catQuery = CIBlock::GetList(
 		    Array(), 
@@ -55,15 +57,6 @@ if (CModule::IncludeModule("blog")) {
 		}
 	}
 
-	$rs_ObjectList = new CDBResult;
-	$rs_ObjectList->InitFromArray($allComments);
-	$rs_ObjectList->NavStart(intval('20'), false);
-	$arResult["NAV_STRING"] = $rs_ObjectList->GetPageNavString("", '');
-	$arResult["PAGE_START"] = $rs_ObjectList->SelectedRowsCount() - ($rs_ObjectList->NavPageNomer - 1) * $rs_ObjectList->NavPageSize;
-	while($onePage = $rs_ObjectList->Fetch()) {
-		$arResult["COMMENTS"][] = $onePage;
-	}
-	
 	$this->IncludeComponentTemplate(); 
 }
 ?>

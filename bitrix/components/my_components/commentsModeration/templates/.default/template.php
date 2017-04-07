@@ -43,4 +43,3 @@
 <div class="pageNav">
 	<?echo $arResult["NAV_STRING"];?>
 </div>
-<input type="hidden" value="<?php print_r(SITE_SERVER_NAME); ?>" id="siteDomen" />

@@ -1,7 +1,7 @@
+		
 function changeComment(comment, action){
-	var domen = document.getElementById("siteDomen").value;
 	ajax({
-		url:"http://"+domen+"/bitrix/components/my_components/commentsModeration/ajax.php",
+		url:"/bitrix/components/my_components/commentsModeration/ajax.php",
 		statbox:"status"+comment,
 		method:"POST",
 		data:{
@@ -26,7 +26,6 @@ function XmlHttp() {
 	}
 	  return xmlhttp;
 }
-
 
 function ajax(param) {
 	if (window.XMLHttpRequest) req = new XmlHttp();

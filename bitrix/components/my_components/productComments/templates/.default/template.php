@@ -1,6 +1,6 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 
-<br/><h3>Оставьте свой комментарий</h3><br/>
+<br/><h3>Напишите свой комментарий</h3><br/>
 <?php
 global $USER;		
 if($USER->GetFirstName()){
@@ -19,13 +19,13 @@ if($USER->GetFirstName()){
 
 	<div class="formRow">
 		<p class="inptittle">Email: </p>
-		<input type="text" name="comm_email" value="<?php echo $USER->GetEmail(); ?>" class="inptext"/>
+		<input type="email" name="comm_email" value="<?php echo $USER->GetEmail(); ?>" class="inptext"/>
 		<p id="noemail"></p>
 	</div>
 	<div style="clear:both;"></div>
 	
 	<div class="formRow">
-	<p class="inptittle">Рейтинг товара: </p>
+	<p class="inptittle">Рейтинг товара: </p>
 		<div class="stars" id="stars">
 			<label id="star1" onmouseover="starsAnimation(1)" onmouseleave="starsReset(1)">
 				<input type="radio" name="comm_rate" value="1" id="rad1"/>
@@ -55,7 +55,7 @@ if($USER->GetFirstName()){
 	<?php if($arResult["COMM_NUM"] == 0):?>
 		Нет отзывов.
 	<?php else: ?>
-		<div id="average" data-ave="<?php echo round($arResult['COMM_AVERAGE'],1);?>">
+		<div id="average" style="width:<?php echo round(24*$arResult['COMM_AVERAGE'])+1;?>px">
 		<?php for($i=0;$i<5;$i++){
 			echo '<img src="/bitrix/components/my_components/productComments/images/star.png" class="starimg">';
 		}?>
@@ -86,11 +86,14 @@ if($USER->GetFirstName()){
 			</div>
 		</div>
 	<?php endforeach;?>
-</div><br/>
+</div>
 <input type="hidden" id="extraEmails" value="<?php echo $arResult['MAIL_ADRESS']; ?>" />
+<div class="pageNav">
+	<?echo $arResult["NAV_STRING"];?>
+</div><br/>
 
 <?php global $USER;
 if ($USER->IsAdmin()){
-	echo "<a class='modlink' href='http://".SITE_SERVER_NAME."/catalog/mod-komm.php'>Модерация комментариев</a>";
+	echo "<a class='modlink' href='/catalog/mod-komm.php'>Модерация комментариев</a>";
 } ?>
 <br/><br/>
