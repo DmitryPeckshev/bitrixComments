@@ -1,5 +1,5 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-
+<?CJSCore::Init(array("jquery"));?>
 <a class="allcommlink <?php if($_GET["show"] == 'P'){
 	echo " unactive";
 }?>" href="<?php echo $APPLICATION->GetCurPage();?>?show=K">Неопубликованные</a>

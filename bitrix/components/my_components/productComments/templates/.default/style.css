@@ -37,10 +37,15 @@
 	height: 24px;
 	margin: 0; 
 	opacity:0.8;
-	background: url(../../images/star_silver.png) round;
 }
 .stars label:hover{
 	cursor: pointer;
+}
+.silver{
+	background: url(../../images/star_silver.png) round;
+}
+.gold{
+	background: url(../../images/star.png) round;
 }
 
 .oneComment {

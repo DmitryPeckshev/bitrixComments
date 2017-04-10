@@ -1,7 +1,5 @@
 <?php
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
-sleep(1);
-
 if (CModule::IncludeModule("blog")) {
 	
 	$UserIP = CBlogUser::GetUserIP();
@@ -45,7 +43,6 @@ if($_POST['extra_emails'] != 'N'){
 			$productName = $prodFields["NAME"];
 		}
 	}
-
 	$getMailEventType = CEventType::GetList(array("TYPE_ID" => "NEW_PRODUCT_COMMENT"));
 	while ($mailEvent = $getMailEventType->Fetch()) {
 	    $mailEventTypeId = $mailEvent['ID'];
@@ -59,7 +56,6 @@ if($_POST['extra_emails'] != 'N'){
 	        "DESCRIPTION"   => "Новый комментарий"
 	    ));
 	}
-
 	$filterAdmin = Array(
 	    "ACTIVE" => "Y",
 	    "GROUPS_ID" => "1"
@@ -70,14 +66,6 @@ if($_POST['extra_emails'] != 'N'){
 	while($oneAdmin = $rsUsers->Fetch()) {
 		array_push($to, $oneAdmin['EMAIL']);
 	}
-
-	$message = <<<EOT
-		<b>Пользователь {$decodedPost['name_area']} прокомментировал товар {$productName}</b>
-		<p>Email: {$decodedPost["email_area"]}</p>
-		<p>Рейтинг: {$decodedPost['rate_area']} из 5</p>
-		<p>Текст комментария:</p>
-		<p>{$decodedPost['text_area']}</p>
-EOT;
 	
 	$eventFilter = Array(
 	    "EVENT_NAME"    => "NEW_PRODUCT_COMMENT",
@@ -85,15 +73,12 @@ EOT;
 	    "ACTIVE"        => "Y",
 	    "BODY_TYPE"     => "html",
 	    );
-	$newEventarr = array(
-		"ACTIVE" => "Y",
-		"EVENT_NAME" => "NEW_PRODUCT_COMMENT",
-		"LID" => SITE_ID,
-		"EMAIL_FROM" => "#DEFAULT_EMAIL_FROM#",
-		"BCC" => "#BCC#",
-		"SUBJECT" => "Новый отзыв",
-		"BODY_TYPE" => "html",
-		"MESSAGE" => $message,
+	$arEventFields = array(
+		"USER_NAME" => $_POST["name_area"],
+		"PRODUCT" => $productName,
+		"USER_EMAIL" => $_POST["email_area"],
+		"RATING" => $_POST["rate_area"],
+		"COMMENT" => $_POST["text_area"],
 	);
 	foreach ($to as $oneEmail) {	
 		$eventFilter["TO"] = $oneEmail;
@@ -101,15 +86,32 @@ EOT;
 		while ($rsMessage = $rsMess->Fetch()) {
 			$mailTemplateId = $rsMessage['ID'];
 		}
-		$newEventarr["EMAIL_TO"] = $oneEmail;
-		$emess = new CEventMessage;
 		if(!$mailTemplateId){
+			$message = <<<EOT
+				<b>Пользователь #USER_NAME# прокомментировал товар #PRODUCT#</b>
+				<p>Email: #USER_EMAIL#</p>
+				<p>Рейтинг: #RATING# из 5</p>
+				<p>Текст комментария:</p>
+				<p>#COMMENT#</p>
+EOT;
+			$newEventarr = array(
+				"ACTIVE" => "Y",
+				"EVENT_NAME" => "NEW_PRODUCT_COMMENT",
+				"LID" => SITE_ID,
+				"EMAIL_FROM" => "#DEFAULT_EMAIL_FROM#",
+				"BCC" => "#BCC#",
+				"SUBJECT" => "Новый отзыв",
+				"BODY_TYPE" => "html",
+				"MESSAGE" => $message,
+				"EMAIL_TO" => $oneEmail
+			);
+			$emess = new CEventMessage;
 			$emess->Add($newEventarr);
+			CEvent::Send("NEW_PRODUCT_COMMENT", SITE_ID, $arEventFields, "N", $emess);
 		}else{
-			$emess->Update($mailTemplateId, $newEventarr);
+			CEvent::Send("NEW_PRODUCT_COMMENT", SITE_ID, $arEventFields, "N", $mailTemplateId);
 		}
 	}
-	CEvent::Send("NEW_PRODUCT_COMMENT", SITE_ID, "N");
 }
 
 }

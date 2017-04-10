@@ -1,5 +1,5 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-
+<?CJSCore::Init(array("jquery"));?>
 <br/><h3>Напишите свой комментарий</h3><br/>
 <?php
 global $USER;		
@@ -27,16 +27,16 @@ if($USER->GetFirstName()){
 	<div class="formRow">
 	<p class="inptittle">Рейтинг товара: </p>
 		<div class="stars" id="stars">
-			<label id="star1" onmouseover="starsAnimation(1)" onmouseleave="starsReset(1)">
-				<input type="radio" name="comm_rate" value="1" id="rad1"/>
-			</label><label id="star2" onmouseover="starsAnimation(2)" onmouseleave="starsReset(2)">
-				<input type="radio" name="comm_rate" value="2" id="rad2"/>
-			</label><label id="star3" onmouseover="starsAnimation(3)" onmouseleave="starsReset(3)">
-				<input type="radio" name="comm_rate" value="3" id="rad3"/>
-			</label><label id="star4" onmouseover="starsAnimation(4)" onmouseleave="starsReset(4)">
-				<input type="radio" name="comm_rate" value="4" id="rad4"/>
-			</label><label id="star5" onmouseover="starsAnimation(5)" onmouseleave="starsReset(5)">
-				<input type="radio" name="comm_rate" value="5" id="rad5"/>
+			<label class="silver">
+				<input type="radio" name="comm_rate" value="1" />
+			</label><label class="silver">
+				<input type="radio" name="comm_rate" value="2" />
+			</label><label class="silver">
+				<input type="radio" name="comm_rate" value="3" />
+			</label><label class="silver">
+				<input type="radio" name="comm_rate" value="4" />
+			</label><label class="silver">
+				<input type="radio" name="comm_rate" value="5" />
 			</label>
 		</div>
 		<p id="norate"></p>
